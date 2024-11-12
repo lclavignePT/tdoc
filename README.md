@@ -26,26 +26,42 @@ specific_files = Dockerfile, .gitignore
 
 > **Nota:** Certifique-se de separar cada item por vírgula e, se necessário, remover espaços extras.
 
-## Como Usar
+## Instalação com `install.sh`
 
-1. Clone este repositório ou faça download dos arquivos necessários.
-2. Configure o `config.ini` conforme desejado.
-3. No terminal, navegue até o diretório onde o script está localizado.
-4. Execute o script passando o diretório que deseja documentar como argumento ou, caso não seja especificado, ele usará o diretório atual.
+Para facilitar o uso do script, você pode instalá-lo como um comando global no sistema usando o script `install.sh`. Isso moverá o script para `~/.local/bin` e o arquivo de configuração para `~/.config/tdoc`.
 
-### Comandos de Execução
+### Passos para Instalação
 
-Para executar o script no diretório atual:
+1. No terminal, navegue até o diretório onde os arquivos `install.sh`, `tdoc.py`, e `exemplo_config.ini` estão localizados.
+2. Dê permissão de execução ao `install.sh` com o comando:
 
-```bash
-python3 script.py
-```
+   ```bash
+   chmod +x install.sh
+   ```
 
-Para especificar um diretório:
+3. Execute o script de instalação:
 
-```bash
-python3 script.py /caminho/para/diretorio
-```
+   ```bash
+   ./install.sh
+   ```
+
+O script `install.sh` renomeará `exemplo_config.ini` para `config.ini` e o copiará para `~/.config/tdoc`. Ele também tornará o comando `tdoc` acessível de qualquer lugar do sistema.
+
+## Como Usar o Script Instalado
+
+Após a instalação, você pode executar o comando `tdoc` em qualquer diretório:
+
+- Para gerar a documentação no diretório atual:
+
+  ```bash
+  tdoc
+  ```
+
+- Para especificar um diretório:
+
+  ```bash
+  tdoc /caminho/para/diretorio
+  ```
 
 O script gerará um arquivo `.txt` com o nome da pasta e um timestamp, que conterá a estrutura do diretório e o conteúdo dos arquivos configurados no `config.ini`.
 
