@@ -1,6 +1,10 @@
 
 # Gerador de Estrutura e Conteúdo de Arquivos
 
+[![License](https://img.shields.io/github/license/lclavignePT/tdoc)](LICENSE)
+![Python](https://img.shields.io/badge/Python-3.x-blue.svg)
+![GitHub Issues](https://img.shields.io/github/issues/lclavignePT/tdoc)
+
 Este script em Python gera um documento `.txt` contendo a estrutura de diretórios de um caminho especificado e o conteúdo de arquivos selecionados, conforme definido em um arquivo de configuração (`config.ini`). Ele permite incluir/excluir diretórios específicos, focar em extensões desejadas, e até mesmo arquivos específicos sem extensão, como `.gitignore` ou `Dockerfile`.
 
 ## Índice
@@ -143,3 +147,9 @@ Cada arquivo encontrado e seu conteúdo serão listados com uma linha de separa�
 ## Erros e Logs
 
 Caso o script não encontre o `config.ini` ou detecte que ele está vazio, exibirá avisos informando que somente a estrutura do diretório será documentada.
+
+### Licença
+Este projeto está licenciado sob a [GNU General Public License v3.0](LICENSE).
+
+### Contato
+Para quaisquer dúvidas, sugestões ou feedback, sinta-se à vontade para abrir uma **Issue** ou entrar em contato diretamente através do meu perfil no GitHub.
