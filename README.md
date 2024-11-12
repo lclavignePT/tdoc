@@ -1,5 +1,5 @@
 
-# Gerador de Estrutura e Conteúdo de Arquivos
+# tdoc
 
 [![License](https://img.shields.io/github/license/lclavignePT/tdoc)](LICENSE)
 ![Python](https://img.shields.io/badge/Python-3.x-blue.svg)
