@@ -3,6 +3,7 @@ excluded_directories:
   - .venv
   - venv
   - node_modules
+  - git
 
 desired_extensions:
   - .py
@@ -13,3 +14,7 @@ desired_extensions:
   - .c
   - .cpp
   - .yml
+
+specific_files:
+  - Dockerfile
+  - .gitignore
