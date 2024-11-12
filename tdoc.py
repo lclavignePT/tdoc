@@ -3,34 +3,39 @@
 import subprocess
 import os
 import sys
-import yaml
 import time
+import configparser
 
-def carregar_configuracoes(config_path="config.yml"):
+def carregar_configuracoes(config_path="config.ini"):
     """
-    Carrega as configurações de um arquivo YAML especificado.
+    Carrega as configurações de um arquivo INI especificado.
     Retorna listas de pastas excluídas, extensões desejadas e arquivos específicos.
     """
-    if not os.path.exists(config_path):
-        print(f"Aviso: Arquivo '{config_path}' não encontrado. Executando apenas o comando tree.")
+    config = configparser.ConfigParser()
+    config.read(config_path)
+    
+    if 'settings' not in config:
+        print(f"Aviso: Seção 'settings' não encontrada no arquivo '{config_path}'. Executando apenas o comando tree.")
         return [], [], []
     
-    with open(config_path, 'r') as file:
-        config = yaml.safe_load(file)
-    
-    pastas_excluidas = config.get('excluded_directories', [])
-    extensoes_desejadas = config.get('desired_extensions', [])
-    arquivos_especificos = config.get('specific_files', [])
+    pastas_excluidas = config['settings'].get('excluded_directories', '').split(',')
+    extensoes_desejadas = config['settings'].get('desired_extensions', '').split(',')
+    arquivos_especificos = config['settings'].get('specific_files', '').split(',')
+
+    # Limpa espaços em branco de cada item
+    pastas_excluidas = [pasta.strip() for pasta in pastas_excluidas if pasta.strip()]
+    extensoes_desejadas = [ext.strip() for ext in extensoes_desejadas if ext.strip()]
+    arquivos_especificos = [arquivo.strip() for arquivo in arquivos_especificos if arquivo.strip()]
     
     if not extensoes_desejadas and not arquivos_especificos:
-        print("Aviso: Nenhuma extensão ou arquivo específico configurado no arquivo config.yml. Executando apenas o comando tree.")
+        print("Aviso: Nenhuma extensão ou arquivo específico configurado no arquivo config.ini. Executando apenas o comando tree.")
     
     return pastas_excluidas, extensoes_desejadas, arquivos_especificos
 
 def executar_comando_tree(caminho_diretorio, pastas_excluidas):
     # Adiciona a opção -a para incluir arquivos e pastas que começam com "."
     pastas_excluidas_str = "|".join(pastas_excluidas) if pastas_excluidas else ""
-    comando = f"tree -n --dirsfirst {caminho_diretorio} -I '{pastas_excluidas_str}'" if pastas_excluidas_str else f"tree -a -n --dirsfirst {caminho_diretorio}"
+    comando = f"tree -n --dirsfirst {caminho_diretorio} -I '{pastas_excluidas_str}'" if pastas_excluidas_str else f"tree -n --dirsfirst {caminho_diretorio}"
     resultado = subprocess.run(comando, shell=True, text=True, capture_output=True)
     return resultado.stdout
 
@@ -81,7 +86,7 @@ def gerar_documentacao(saida_tree, arquivos_documentados, caminho_diretorio, som
     
     print(f"Documento gerado: {nome_txt}")
 
-# Carrega as configurações do arquivo config.yml
+# Carrega as configurações do arquivo config.ini
 pastas_excluidas, extensoes_desejadas, arquivos_especificos = carregar_configuracoes()
 
 # Usa o diretório atual se nenhum caminho for passado como argumento
