@@ -3,9 +3,56 @@
 
 Este script em Python gera um documento `.txt` contendo a estrutura de diretórios de um caminho especificado e o conteúdo de arquivos selecionados, conforme definido em um arquivo de configuração (`config.ini`). Ele permite incluir/excluir diretórios específicos, focar em extensões desejadas, e até mesmo arquivos específicos sem extensão, como `.gitignore` ou `Dockerfile`.
 
+## Índice
+
+- [Pré-requisitos](#pré-requisitos)
+- [Instalação do Git](#instalação-do-git)
+- [Clonando o Projeto](#clonando-o-projeto)
+- [Arquivo de Configuração (config.ini)](#arquivo-de-configuração-configini)
+- [Instalação com install.sh](#instalação-com-installsh)
+- [Como Usar o Script Instalado](#como-usar-o-script-instalado)
+- [Exemplo de Saída](#exemplo-de-saída)
+- [Notas](#notas)
+- [Erros e Logs](#erros-e-logs)
+
 ## Pré-requisitos
 
 - Python 3.x instalado no sistema.
+
+## Instalação do Git
+
+Para clonar este projeto, você precisa ter o Git instalado em seu sistema. Siga as instruções abaixo para instalar o Git.
+
+### No Debian/Ubuntu (derivados)
+
+```bash
+sudo apt update
+sudo apt install git
+```
+
+### No Fedora
+
+```bash
+sudo dnf install git
+```
+
+### No macOS
+
+No macOS, você pode instalar o Git usando o Homebrew:
+
+```bash
+brew install git
+```
+
+## Clonando o Projeto
+
+Após instalar o Git, você pode clonar o repositório do projeto. No terminal, navegue até o diretório onde deseja salvar o projeto e execute o comando abaixo:
+
+```bash
+git clone https://github.com/usuario/repositorio.git
+```
+
+Substitua `https://github.com/usuario/repositorio.git` pelo URL do repositório do GitHub onde este projeto está hospedado.
 
 ## Arquivo de Configuração (`config.ini`)
 
@@ -88,9 +135,10 @@ Cada arquivo encontrado e seu conteúdo serão listados com uma linha de separa�
 
 ## Notas
 
+- Atualmente só funciona utilizando o `install.sh`
 - O arquivo de saída incluirá o nome do diretório e um timestamp (em formato Unix) para rastrear o momento da geração do documento.
 - Arquivos ocultos (começando com `.`) serão incluídos na estrutura do diretório.
-- Se o arquivo `config.ini` estiver ausente ou sem configuração de extensões e arquivos específicos, o script executará apenas a estrutura de diretórios (`tree`).
+- Se o arquivo `config.ini` estiver ausente ou sem configuração de extensões e arquivos específicos, o script salvará apenas a estrutura de diretórios.
 
 ## Erros e Logs
 
