@@ -1,5 +1,5 @@
 
-# Documentador de Estrutura e Conteúdo de Arquivos
+# Gerador de Estrutura e Conteúdo de Arquivos
 
 Este script em Python gera um documento `.txt` contendo a estrutura de diretórios de um caminho especificado e o conteúdo de arquivos selecionados, conforme definido em um arquivo de configuração (`config.ini`). Ele permite incluir/excluir diretórios específicos, focar em extensões desejadas, e até mesmo arquivos específicos sem extensão, como `.gitignore` ou `Dockerfile`.
 
