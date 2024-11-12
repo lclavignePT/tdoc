@@ -6,12 +6,20 @@ import sys
 import time
 import configparser
 
-def carregar_configuracoes(config_path="config.ini"):
+def carregar_configuracoes():
     """
-    Carrega as configurações de um arquivo INI especificado.
+    Carrega as configurações do arquivo INI localizado em ~/.config/tdoc/config.ini.
     Retorna listas de pastas excluídas, extensões desejadas e arquivos específicos.
     """
+    config_path = os.path.expanduser("~/.config/tdoc/config.ini")
     config = configparser.ConfigParser()
+
+    # Verifica se o arquivo de configuração existe
+    if not os.path.exists(config_path):
+        print(f"Aviso: Arquivo '{config_path}' não encontrado. Executando apenas o comando tree.")
+        return [], [], []
+
+    # Lê o arquivo de configuração
     config.read(config_path)
     
     if 'settings' not in config:
